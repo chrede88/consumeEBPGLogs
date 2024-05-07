@@ -1,0 +1,2 @@
+[console_scripts]
+consumeEBPGLogs = consumeEBPGLogs.consumeLogs:main

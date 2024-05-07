@@ -1,0 +1,11 @@
+pyproject.toml
+setup.cfg
+setup.py
+consumeEBPGLogs/__init__.py
+consumeEBPGLogs/consumeLogs.py
+consumeEBPGLogs.egg-info/PKG-INFO
+consumeEBPGLogs.egg-info/SOURCES.txt
+consumeEBPGLogs.egg-info/dependency_links.txt
+consumeEBPGLogs.egg-info/entry_points.txt
+consumeEBPGLogs.egg-info/requires.txt
+consumeEBPGLogs.egg-info/top_level.txt

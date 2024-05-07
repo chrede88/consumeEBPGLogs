@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: consumeEBPGLogs
+Version: 0.0.1
+Summary: Tool to comsume EBPG logs
+Author: Christian Olsen
+Author-email: christian@cjsolsen.com
+License: MIT
+Requires-Python: >=3.8
+Requires-Dist: argparse
+Requires-Dist: matplotlib
+Requires-Dist: numpy
