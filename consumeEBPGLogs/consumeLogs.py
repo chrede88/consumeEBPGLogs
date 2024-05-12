@@ -16,7 +16,8 @@ def main():
     output = generate_output(logs,plot=args.plot)
 
     print(output)
-    plt.show()
+    if args.plot:
+        plt.show()
 
 def loadfile(filepath):
     file = open(filepath,'r', encoding='cp1252')
@@ -31,15 +32,27 @@ def generate_output(log,plot=False):
 
     job_status = find_input_first('Job status',log).rstrip('\n').split(' ')[-1]
     output.append('Job Status: {}'.format(job_status))
+
+    output.append('Exposure Time: {}'.format(find_input_first('Elapsed time:',log).rstrip('\n').split(' ')[-1]))
     output.append('Using holder: {}'.format(find_input_first('pg select holder',log).rstrip('\n').split(' ')[-1]))
     
+    output.append('Exposure current: {}nA'.format(float(find_input_first('Beam diameter',log).rstrip('\n').split(':')[-1].rstrip('nA').strip())))
+
     if job_status != 'FINISHED':
+        # try to do get some info that might be helpful
+
+        # check if the -f flag was set
+        if len(find_input_index('faradaycup reference',log)) == 0:
+            output.append('Faraday cup NOT used as reference! Is this intentional?')
+        
+        # check if any write fields were written
+        index_write_fields = find_input_index('DATE:',log)
+        output.append('Number of write-fields written before crash: {}'.format(len(index_write_fields)))
+
         return '\n'.join(output)
     
-    output.append('Exposure current: {}nA'.format(float(find_input_first('Beam diameter',log).rstrip('\n').split(':')[-1].rstrip('nA').strip())))
-    
     if len(find_input_index('faradaycup reference',log)) == 0:
-        output.append('\nFaraday cup NOT used as reference! Is this intentional?\n')
+        output.append('Faraday cup NOT used as reference! Is this intentional?')
     
     index_write_fields = find_input_index('DATE:',log)
     output.append('Number of write-fields: {}'.format(len(index_write_fields)))
