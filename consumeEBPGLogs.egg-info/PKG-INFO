@@ -1,11 +1,65 @@
 Metadata-Version: 2.1
 Name: consumeEBPGLogs
-Version: 0.0.1
+Version: 0.0.2
 Summary: Tool to comsume EBPG logs
 Author: Christian Olsen
 Author-email: christian@cjsolsen.com
 License: MIT
 Requires-Python: >=3.8
+License-File: LICENSE
 Requires-Dist: argparse
 Requires-Dist: matplotlib
 Requires-Dist: numpy
+
+# consumeEBPGLogs
+
+This is a small CLI tool created to easily comsume logs from a Raith EBPG electron beam writer.
+
+## Install
+It's recommended to install this using [pipx](https://pipx.pypa.io). pipx installs each package in an isolated environment, which mitigates depedency version issues.
+
+```sh
+pipx install git+https://github.com/chrede88/consumeEBPGLogs.git
+```
+
+## Usage
+The CLI tool takes two flag, one mondatory the other optional.
+
+Use `-f [--file] path/to/log` to point to a logfile.
+
+Pass `-p [--plot]` to open a plot of the chip heightmap created as the chip was written (optional).
+
+Pass `-h [--help]` (only) to print the help page.
+
+```sh
+consumeEBPGLogs -p -f path/to/log
+```
+
+## Update
+Updating the package using `pipx` is just as easy as installing it.
+
+```sh
+pipx upgrade consumeEBPGLogs
+```
+
+MIT License
+
+Copyright (c) 2024 Christian Olsen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
