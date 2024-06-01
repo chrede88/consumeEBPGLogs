@@ -18,6 +18,8 @@ Pass `-p [--plot]` to open a plot of the chip heightmap created as the chip was 
 
 Pass `-h [--help]` (only) to print the help page.
 
+Pass `-v [--version]` (only) to print the installed version
+
 ```sh
 consumeEBPGLogs -p -f path/to/log
 ```
