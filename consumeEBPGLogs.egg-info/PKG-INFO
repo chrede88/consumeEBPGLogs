@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: consumeEBPGLogs
-Version: 0.0.2
+Version: 0.0.3
 Summary: Tool to comsume EBPG logs
 Author: Christian Olsen
 Author-email: christian@cjsolsen.com
@@ -30,6 +30,8 @@ Use `-f [--file] path/to/log` to point to a logfile.
 Pass `-p [--plot]` to open a plot of the chip heightmap created as the chip was written (optional).
 
 Pass `-h [--help]` (only) to print the help page.
+
+Pass `-v [--version]` (only) to print the installed version
 
 ```sh
 consumeEBPGLogs -p -f path/to/log
