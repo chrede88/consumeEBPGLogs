@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--file', required=True, help='path to logfile')
     parser.add_argument('-p', '--plot', required=False, action='store_true', help='pass flag to plot heightmap')
-    parser.add_argument('-v', '--version', action='version', version='v0.0.3', help='print version')
+    parser.add_argument('-v', '--version', action='version', version='v0.0.4', help='print version')
     args = parser.parse_args()
 
     # read logfile
