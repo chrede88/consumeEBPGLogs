@@ -193,7 +193,7 @@ def get_drift_data(log):
     indicies = find_input_index('cal drift',log)
     n = len(indicies)
     driftX,driftY,driftT = np.empty(n),np.empty(n),np.empty(n)
-    st = time.strptime(find_input_first('cjob_do:', log).rstrip('\n').split(' ')[-1],'%H:%M:%S')
+    st = time.strptime(find_input_first('cjob_do: expose pattern', log).rstrip('\n').split(' ')[-1],'%H:%M:%S')
     startSeconds = datetime.timedelta(hours=st.tm_hour,minutes=st.tm_min,seconds=st.tm_sec).total_seconds()
     for i,index in enumerate(indicies):
         driftLine = find_input_first('cal drift', log, lineNum=index).rstrip('\n').split(' ')
@@ -218,7 +218,9 @@ def generate_pattern_list(searchstring,log):
     genlist = []
     indicies = find_input_index(searchstring,log)
     for i,index in enumerate(indicies):
-        genlist.append(find_input_first(searchstring,log, lineNum=index).rstrip('\n').split(' ')[-1])
+        pattern_file = find_input_first(searchstring,log, lineNum=index).rstrip('\n').split(' ')[-1]
+        if pattern_file not in genlist and not pattern_file.startswith('/home/pg/users/'):
+            genlist.append(pattern_file)
 
     output = ','.join(genlist)
     return output
