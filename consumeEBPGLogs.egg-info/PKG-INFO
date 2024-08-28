@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: consumeEBPGLogs
-Version: 0.0.4
+Version: 0.0.5
 Summary: Tool to comsume EBPG logs
 Author: Christian Olsen
 Author-email: christian@cjsolsen.com
