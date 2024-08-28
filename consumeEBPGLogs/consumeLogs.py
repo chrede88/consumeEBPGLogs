@@ -9,7 +9,7 @@ def main():
     # handle CLI args
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--file', required=True, help='path to logfile')
-    parser.add_argument('-p', '--plot', required=False, action='store_true', help='pass flag to plot heightmap')
+    parser.add_argument('-p', '--plot', required=False, action='store_true', help='pass flag to plot heightmap & driftmap')
     parser.add_argument('-v', '--version', action='version', version='v0.0.4', help='print version')
     args = parser.parse_args()
 
@@ -124,7 +124,7 @@ def generate_output(log,plot=False):
         else:
             annotate_axes(ax1, 'No drift data')
         ax1.set_xlabel('Time [min]')
-        ax1.set_ylabel('Drift [nm]')
+        ax1.set_ylabel('Drift [nm/min]')
         ax1.set_title('Adjusted Stage Drift')
 
         # fig.tight_layout()
@@ -199,9 +199,12 @@ def get_drift_data(log):
         driftLine = find_input_first('cal drift', log, lineNum=index).rstrip('\n').split(' ')
         ts = time.strptime(driftLine[2],'%H:%M')
         tsSeconds = datetime.timedelta(hours=ts.tm_hour,minutes=ts.tm_min).total_seconds()
+        if tsSeconds < startSeconds:
+            # we've passed midnight, add 24h to time
+            tsSeconds = tsSeconds+(24.0*3600.0)
         driftT[i] = (tsSeconds-startSeconds)/60.0
-        drift = driftLine[4].split(',')
-        driftX[i],driftY[i] = float(drift[0].rstrip('_nm')),float(drift[1].rstrip('_nm'))
+        drift = driftLine[-1].split(',')
+        driftX[i],driftY[i] = float(drift[0].rstrip('_nm/min')),float(drift[1].rstrip('_nm/min'))
 
     return driftX,driftY,driftT
 
